@@ -6,10 +6,11 @@ PrimeCheckerThread::PrimeCheckerThread(int id)
 	this->id = id;
 }
 
-void PrimeCheckerThread::Check(int numToCheck, int currDivisor, IExecutionEvent* execEvent, bool* isPrime)
+void PrimeCheckerThread::Check(int currNumber, int numToCheck, int currDivisor, IExecutionEvent* execEvent, bool* isPrime)
 {
 	//Change values to be checked
 	this->numToCheck = numToCheck;
+	this->currNumber = currNumber;
 	this->currDivisor = currDivisor;
 	this->execEvent = execEvent;
 	this->isPrime = isPrime;
@@ -23,18 +24,25 @@ PrimeCheckerThread::~PrimeCheckerThread()
 void PrimeCheckerThread::run()
 {
 	if (isRunning) {
-		//Add sleep time
-		IETThread::sleep(200);
-
+		//std::cout << currNumber << std::endl;
+		int max = currNumber + 10;
 		//Prime checker logic
-		if (currDivisor >= 2 && (this->numToCheck % this->currDivisor == 0)) {
-			*isPrime = false;
-			std::cout <<  numToCheck << "/" << currDivisor << " Check if Prime : False" << std::endl;
-		}
+		//		current number		max number to check
+		for (int i = currNumber; i <= max; i++){
+			
+			if (currDivisor != this->numToCheck) {
+				//								change to max number
+				if (currDivisor >= 2 && (this->numToCheck % i == 0)) {
+					*isPrime = false;
+					std::cout << numToCheck << "/" << i << " Check if Prime : False" << std::endl;
+				}
 
-		else {
-			std::cout << numToCheck << "/" << currDivisor << " Check if Prime : True"  << std::endl;
+				else {
+					std::cout << numToCheck << "/" << i << " Check if Prime : True" << std::endl;
+				}
+			}			
 		}
+		
 		isRunning = false;
 		this->execEvent->onFinishedExecution();
 	}

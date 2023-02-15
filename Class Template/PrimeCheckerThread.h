@@ -9,7 +9,7 @@ private:
 	typedef std::string String;
 public:
 	PrimeCheckerThread(int id);
-	void Check(int numToCheck, int currDivisor, IExecutionEvent* execEvent, bool* isPrime);
+	void Check(int currNumber, int numToCheck, int currDivisor, IExecutionEvent* execEvent, bool* isPrime);
 	~PrimeCheckerThread();
 
 public:
@@ -20,6 +20,7 @@ private:
 	
 	bool isRunning = false;
 	int numToCheck;
+	int currNumber;
 	int currDivisor;
 	bool* isPrime; 
 	IExecutionEvent* execEvent;

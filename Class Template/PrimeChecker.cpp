@@ -1,5 +1,6 @@
 #include "PrimeChecker.h"
 
+const int SUBTRACTOR = 100;
 PrimeChecker::PrimeChecker(int numOfThreads, int numToCheck): AGameObject("PrimeChecker")
 {
 	this->numOfThreads = numOfThreads;
@@ -30,12 +31,27 @@ void PrimeChecker::update(sf::Time deltaTime)
 	if (this->availableThreadList.size() > 0 && currDivisor > 0 && !isDone) {	
 
 		PrimeCheckerThread* currThread = availableThreadList[availableThreadList.size() - 1];
-		currThread->Check(this->numToCheck, this->currDivisor, this, &isPrime);
+		// this->numToCheck (max)
+		// subtracted by 10 per increment
+		// 0-10
+		// 11-20
+		// 21-30 and so on
+		this->currNumber = this->currDivisor - SUBTRACTOR;
+		if (this->currNumber < 0) {
+			this->currNumber = 2;
+		}
+		currThread->Check(this->currNumber, this->numToCheck, this->currDivisor, this, &isPrime);
 		usedThreadList.push_front(currThread);
 		availableThreadList.pop_back();
 		currThread->start();
-		this->currDivisor -= 1;
-		
+		this->currDivisor -= SUBTRACTOR;
+		if (this->currDivisor < 0) {
+			currDivisor -= 1;
+			if (currDivisor < 1) {
+				currDivisor = 0;
+			}
+		}
+		//std::cout << this->currDivisor << std::endl;
 	}
 	
 	//Display result

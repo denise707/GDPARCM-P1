@@ -17,6 +17,7 @@ private:
 	int numOfThreads;
 	int currDivisor;
 	int numToCheck;
+	int currNumber;
 	bool isPrime = true;
 	bool isDone = false;
 	std::deque<PrimeCheckerThread*> availableThreadList;

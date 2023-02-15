@@ -28,12 +28,12 @@ void PrimeCheckerThread::run()
 
 		//Prime checker logic
 		if (currDivisor >= 2 && (this->numToCheck % this->currDivisor == 0)) {
-			*isPrime = true;
-			std::cout <<  numToCheck << "/" << currDivisor << " Check if Prime : True" << std::endl;
+			*isPrime = false;
+			std::cout <<  numToCheck << "/" << currDivisor << " Check if Prime : False" << std::endl;
 		}
 
 		else {
-			std::cout << numToCheck << "/" << currDivisor << " Check if Prime : False"  << std::endl;
+			std::cout << numToCheck << "/" << currDivisor << " Check if Prime : True"  << std::endl;
 		}
 		isRunning = false;
 		this->execEvent->onFinishedExecution();

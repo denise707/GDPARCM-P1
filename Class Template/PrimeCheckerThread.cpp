@@ -26,17 +26,12 @@ void PrimeCheckerThread::run()
 		if (i != this->numToCheck) {
 			if (i >= 2 && (this->numToCheck % i == 0)) {
 				*isPrime = false;
-				//std::cout << numToCheck << "/" << i << " Check if Prime : False" << std::endl;
-			}
-
-			else {
-				//std::cout << numToCheck << "/" << i << " Check if Prime : True" << std::endl;
 			}
 		}		
-		//if(id == 0)std::cout << "ID: " << i << std::endl;
+		if (i == 2147483647) break;
+		IETThread::sleep(0.00000001);
 	}
 	
-	IETThread::sleep(200);
 	this->execEvent->onFinishedExecution(this->id);
 	delete this;
 }

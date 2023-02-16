@@ -16,8 +16,6 @@ BaseRunner::BaseRunner() :
 
 	//Enter number of threads, number to check
 	//Test Case: 2147483647
-
-	//483647
 	
 	PrimeChecker* primeChecker = new PrimeChecker(8, 2147483647);
 	GameObjectManager::getInstance()->addObject(primeChecker);

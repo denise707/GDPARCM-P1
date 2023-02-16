@@ -1,6 +1,6 @@
 #include "PrimeChecker.h"
 
-const int SUBTRACTOR = (2147483647 / 8) + 1 ;//100000000;
+const int SUBTRACTOR = (2147483647 / 8) + 1 ;
 PrimeChecker::PrimeChecker(int numOfThreads, int numToCheck): AGameObject("PrimeChecker")
 {
 	this->numOfThreads = numOfThreads;
@@ -24,7 +24,7 @@ void PrimeChecker::initialize()
 	}
 
 	while (index < numOfThreads && !isDone) {
-		std::cout << "Index: " << index << "Min: " << currNumber << "Max: " << currDivisor << std::endl;
+		std::cout << "Index: " << index << " Min: " << currNumber << " Max: " << currDivisor << std::endl;
 		PrimeCheckerThread* currThread = new PrimeCheckerThread(index);
 		currThread->Check(this->currNumber, this->numToCheck, this->currDivisor, this, &isPrime);
 		currThread->start();
@@ -55,7 +55,6 @@ void PrimeChecker::processInput(sf::Event event)
 
 void PrimeChecker::update(sf::Time deltaTime)
 {
-	//std::cout << finishedThreads << std::endl;
 	//Display result
 	if (finishedThreads >= numOfThreads && !isDone) {
 		if (this->isPrime)
@@ -69,5 +68,6 @@ void PrimeChecker::update(sf::Time deltaTime)
 
 void PrimeChecker::onFinishedExecution(int id)
 {
+	std::cout << id << " is done." << std::endl;
 	finishedThreads++;
 }

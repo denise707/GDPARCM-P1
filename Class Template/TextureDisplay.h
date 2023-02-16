@@ -13,7 +13,7 @@ public:
 	void initialize();
 	void processInput(sf::Event event);
 	void update(sf::Time deltaTime);
-	void onFinishedExecution() override;
+	void onFinishedExecution(int id) override;
 
 private:
 	typedef std::vector<IconObject*> IconList;

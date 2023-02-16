@@ -32,7 +32,7 @@ void TextureDisplay::update(sf::Time deltaTime)
 	}
 }
 
-void TextureDisplay::onFinishedExecution()
+void TextureDisplay::onFinishedExecution(int id)
 {
 	this->spawnObject(); //executes spawn once the texture is ready
 }

@@ -14,7 +14,6 @@ public:
 
 public:
 	int id;
-
 private:
 	void run() override;
 	

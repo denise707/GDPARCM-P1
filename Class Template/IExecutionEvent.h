@@ -4,5 +4,5 @@
 class IExecutionEvent 
 {
 public:
-	virtual void onFinishedExecution() = 0;
+	virtual void onFinishedExecution(int id) = 0;
 };

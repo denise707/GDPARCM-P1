@@ -15,9 +15,11 @@ BaseRunner::BaseRunner() :
 	window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "HO: Simple Asset Loader", sf::Style::Close) {
 
 	//Enter number of threads, number to check
-	//Test Case: 2,147,483,647
+	//Test Case: 2147483647
+
+	//483647
 	
-	PrimeChecker* primeChecker = new PrimeChecker(10, 483647);
+	PrimeChecker* primeChecker = new PrimeChecker(8, 2147483647);
 	GameObjectManager::getInstance()->addObject(primeChecker);
 	window.setFramerateLimit(60);
 }

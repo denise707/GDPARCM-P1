@@ -26,7 +26,7 @@ void StreamAssetLoader::run() {
 
 	std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
 
-	this->execEvent->onFinishedExecution();
+	this->execEvent->onFinishedExecution(1);
 	//delete after being done
 	delete this;
 }

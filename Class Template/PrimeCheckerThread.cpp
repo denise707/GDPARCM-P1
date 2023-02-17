@@ -28,10 +28,11 @@ void PrimeCheckerThread::run()
 				*isPrime = false;
 			}
 		}		
+		//std::cout << "Thread: " << id << " Divisor: " << i << std::endl;
 		if (i == 2147483647) break;
-		IETThread::sleep(0.00000001);
+		IETThread::sleep(180);
+		//0.00000001
 	}
-	
 	this->execEvent->onFinishedExecution(this->id);
 	delete this;
 }

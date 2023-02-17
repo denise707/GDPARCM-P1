@@ -1,6 +1,6 @@
 #include "PrimeChecker.h"
 
-const int SUBTRACTOR = (2147483647 / 8) + 1 ;
+const int SUBTRACTOR = (2147483647 / 4) + 1 ;
 PrimeChecker::PrimeChecker(int numOfThreads, int numToCheck): AGameObject("PrimeChecker")
 {
 	this->numOfThreads = numOfThreads;

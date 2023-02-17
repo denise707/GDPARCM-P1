@@ -1,6 +1,6 @@
 #include "PrimeChecker.h"
 
-const int SUBTRACTOR = (2147483647/8) + 1 ;
+int SUBTRACTOR = (2147483647/1) + 0;
 PrimeChecker::PrimeChecker(int numOfThreads, int numToCheck): AGameObject("PrimeChecker")
 {
 	this->numOfThreads = numOfThreads;
@@ -13,8 +13,10 @@ PrimeChecker::~PrimeChecker()
 
 void PrimeChecker::initialize()
 {
+	begin = std::chrono::steady_clock::now();
+
 	//Create threads
-	this->currDivisor = numToCheck; 
+	this->currDivisor = numToCheck;
 	if ((currDivisor - SUBTRACTOR) > 0) {
 		currNumber = currDivisor - SUBTRACTOR;
 	}
@@ -22,7 +24,7 @@ void PrimeChecker::initialize()
 	else {
 		currNumber = 2;
 	}
-
+	
 	while (index < numOfThreads && !isDone) {
 		std::cout << "Index: " << index << " Min: " << currNumber << " Max: " << currDivisor << std::endl;
 		PrimeCheckerThread* currThread = new PrimeCheckerThread(index);
@@ -62,13 +64,13 @@ void PrimeChecker::update(sf::Time deltaTime)
 		else {
 			std::cout << numToCheck << " is not a prime number." << std::endl;
 		}
-		std::cout << std::to_string(deltaTime.asMicroseconds()) << " ms";
+		end = std::chrono::steady_clock::now();
+		std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << std::endl;
 		this->isDone = true;
 	}
 }
 
 void PrimeChecker::onFinishedExecution(int id)
 {
-	std::cout << id << " is done." << std::endl;
 	finishedThreads++;
 }

@@ -22,7 +22,7 @@ private:
 	int finishedThreads = 0;
 	bool isPrime = true;
 	bool isDone = false;
-	std::deque<PrimeCheckerThread*> availableThreadList;
-	std::deque<PrimeCheckerThread*> usedThreadList;
+	std::chrono::steady_clock::time_point begin;
+	std::chrono::steady_clock::time_point end;
 };
 

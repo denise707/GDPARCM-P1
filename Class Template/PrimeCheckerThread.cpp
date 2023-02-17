@@ -22,17 +22,19 @@ PrimeCheckerThread::~PrimeCheckerThread()
 
 void PrimeCheckerThread::run()
 {
-	for (int i = currNumber; i <= currDivisor; i++){
+	IETThread::sleep(500);
+
+	for (int i = currNumber; i <= currDivisor; i++) {
 		if (i != this->numToCheck) {
 			if (i >= 2 && (this->numToCheck % i == 0)) {
 				*isPrime = false;
 			}
-		}		
-		//std::cout << "Thread: " << id << " Divisor: " << i << std::endl;
+		}
+
+		//std::cout << "Thread: " << currDivisor << " Divisor: " << i << std::endl;
 		if (i == 2147483647) break;
-		//IETThread::sleep(180);
-		//0.00000001
 	}
+	
 	this->execEvent->onFinishedExecution(this->id);
 	delete this;
 }

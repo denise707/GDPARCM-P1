@@ -1,6 +1,6 @@
 #include "PrimeChecker.h"
 
-const int SUBTRACTOR = (2147483647 / 4) + 1 ;
+const int SUBTRACTOR = (2147483647/8) + 1 ;
 PrimeChecker::PrimeChecker(int numOfThreads, int numToCheck): AGameObject("PrimeChecker")
 {
 	this->numOfThreads = numOfThreads;
@@ -62,6 +62,7 @@ void PrimeChecker::update(sf::Time deltaTime)
 		else {
 			std::cout << numToCheck << " is not a prime number." << std::endl;
 		}
+		std::cout << std::to_string(deltaTime.asMicroseconds()) << " ms";
 		this->isDone = true;
 	}
 }
